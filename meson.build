@@ -1,5 +1,5 @@
 project(
-    'neolibc',
+    'neolibc-interface',
     'c',
     default_options: ['default_library=static', 'c_std=c11'],
     license: 'MIT'
@@ -22,4 +22,4 @@ if compiler == 'gcc'
     library_args += {'override_options': 'c_std=gnu11'}
 endif
 
-library('neolibc', sources, kwargs: library_args)
+library('neolibc-interface', sources, kwargs: library_args)
