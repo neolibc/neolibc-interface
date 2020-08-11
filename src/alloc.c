@@ -33,7 +33,7 @@ void restore_default_allocator(void) {
 
 void *allocate(size_t size) {
     void *allocated = g_allocater.allocate(size);
-    if (!allocated) {
+    if (!allocated && size != 0) {
         g_oom_handler();
     }
     return allocated;
@@ -41,7 +41,7 @@ void *allocate(size_t size) {
 
 void *clear_allocate(size_t num_elements, size_t size) {
     void *clear_allocated = g_allocater.clear_allocate(num_elements, size);
-    if (!clear_allocated) {
+    if (!clear_allocated && num_elements != 0 && size != 0) {
         g_oom_handler();
     }
     return clear_allocated;
@@ -49,7 +49,7 @@ void *clear_allocate(size_t num_elements, size_t size) {
 
 void *reallocate(void *ptr, size_t size) {
     void *reallocated = g_allocater.reallocate(ptr, size);
-    if (!reallocated) {
+    if (!reallocated && size != 0) {
         g_oom_handler();
     }
     return reallocated;
