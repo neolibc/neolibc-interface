@@ -7,6 +7,7 @@ static void default_oom_handler(void);
 
 static const Allocator k_default_allocater = {
     .allocate = malloc,
+    .clear_allocate = calloc,
     .reallocate = realloc,
     .free = free
 };
@@ -36,6 +37,14 @@ void *allocate(size_t size) {
         g_oom_handler();
     }
     return allocated;
+}
+
+void *clear_allocate(size_t num_elements, size_t size) {
+    void *clear_allocated = g_allocater.clear_allocate(num_elements, size);
+    if (clear_allocated == NULL) {
+        g_oom_handler();
+    }
+    return clear_allocated;
 }
 
 void *reallocate(void *ptr, size_t size) {
