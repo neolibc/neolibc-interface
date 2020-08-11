@@ -9,7 +9,7 @@ static const Allocator k_default_allocater = {
     .allocate = malloc,
     .clear_allocate = calloc,
     .reallocate = realloc,
-    .free = free
+    .deallocate = free
 };
 
 static Allocator g_allocater;
@@ -55,8 +55,8 @@ void *reallocate(void *ptr, size_t size) {
     return reallocated;
 }
 
-void free(void *ptr) {
-    g_allocater.free(ptr);
+void deallocate(void *ptr) {
+    g_allocater.deallocate(ptr);
 }
 
 void default_oom_handler(void) {
