@@ -60,6 +60,5 @@ void free(void *ptr) {
 }
 
 void default_oom_handler(void) {
-    fputs("Out of memory. Default neolibc handler. Abort.", stderr);
-    exit(EXIT_FAILURE);
+    fputs("Warning: out of memory!", stderr);
 }
